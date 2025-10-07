@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Aryan Tanwar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>Aryan Tanwar</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Me</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="thank-you-content">
+            <div class="container">
+                <div class="thank-you-card">
+                    <div class="success-icon">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#4CAF50"/>
+                            <path d="M8 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h1>Thank You!</h1>
+                    <p class="thank-you-message">
+                        Your message has been successfully sent. I appreciate you taking the time to reach out, and I'll get back to you as soon as possible.
+                    </p>
+                    <div class="next-steps">
+                        <h3>What's Next?</h3>
+                        <ul>
+                            <li>I'll review your message and respond within 24-48 hours</li>
+                            <li>Feel free to connect with me on LinkedIn for professional updates</li>
+                            <li>Check out my latest projects on GitHub</li>
+                        </ul>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="/" class="btn btn-primary">Back to Home</a>
+                        <a href="/projects" class="btn btn-secondary">View My Projects</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aryan Tanwar. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/aryantanwar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/aryantanwar" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:atanwar@iu.edu">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
