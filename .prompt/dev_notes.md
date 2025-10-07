@@ -1,4 +1,5 @@
 # AI Development Notes - Personal Portfolio Website
+https://github.com/atanwar8/personal-portfolio
 
 ## AI Prompts Used During Development
 
