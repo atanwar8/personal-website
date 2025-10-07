@@ -99,14 +99,6 @@ The contact form includes comprehensive validation:
 - **Real-time Validation**: Immediate feedback as user types
 - **Accessibility**: Proper labels and error messages
 
-## 📱 Responsive Breakpoints
-
-- **Mobile**: 320px - 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: 1024px+
-
-## 🎨 Design System
-
 ### Colors
 - Primary: #3498db (Blue)
 - Secondary: #2c3e50 (Dark Blue)
@@ -120,7 +112,7 @@ The contact form includes comprehensive validation:
 - Body: 400 weight
 - Line Height: 1.6
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.7 or higher
@@ -173,7 +165,7 @@ All AI interactions are documented with prompts, outputs, and decisions made dur
 
 **Aryan Tanwar**
 - MSIS Student, Kelley School of Business
-- Email: aryan.tanwar@iu.edu
+- Email: atanwar@iu.edu
 - LinkedIn: [linkedin.com/in/aryantanwar](https://linkedin.com/in/aryantanwar)
 - GitHub: [github.com/atanwar8](https://github.com/atanwar8)
 
