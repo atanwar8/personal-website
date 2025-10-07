@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Aryan Tanwar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>Aryan Tanwar</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about" class="active">About Me</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>About Me</h1>
+                <p>Get to know my story, interests, and aspirations</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>Professional Background</h2>
+                        <p>I am Aryan Tanwar, a Master of Science in Information Systems student at the Kelley School of Business, Indiana University. My academic and professional focus centers on leveraging data analytics, machine learning, and business intelligence to solve complex operational challenges and drive strategic decision-making.</p>
+                        
+                        <p>With a strong foundation in computer science and hands-on experience in data-driven projects, I specialize in developing predictive models and analytical solutions that deliver measurable business value. My work spans across inventory optimization, demand forecasting, and business process automation.</p>
+
+                        <h3>Core Competencies</h3>
+                        <ul class="interests-list">
+                            <li><strong>Data Science & Analytics:</strong> Advanced statistical modeling, predictive analytics, and data visualization</li>
+                            <li><strong>Machine Learning:</strong> Supervised and unsupervised learning, time series forecasting, and model optimization</li>
+                            <li><strong>Business Intelligence:</strong> Dashboard development, KPI tracking, and strategic reporting</li>
+                            <li><strong>Full-Stack Development:</strong> End-to-end application development with modern frameworks and technologies</li>
+                            <li><strong>Process Optimization:</strong> Identifying inefficiencies and implementing data-driven solutions</li>
+                        </ul>
+
+                        <h3>Professional Objectives</h3>
+                        <p>I am focused on roles that combine technical expertise with business strategy, particularly in data science, business analytics, and product management. My goal is to contribute to organizations that value innovation and data-driven decision-making, where I can apply my skills to solve real-world business challenges and drive operational excellence.</p>
+                        
+                        <p>I am particularly interested in opportunities within technology consulting, financial services, and operations analytics, where I can leverage my technical background and business acumen to create sustainable competitive advantages.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="{{ url_for('static', filename='images/atanwar@iu.edu-4d222ff5.jpg') }}" alt="Aryan Tanwar" class="about-img">
+                        <div class="image-caption">
+                            <p>Master of Science in Information Systems, Kelley School of Business</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="values-section">
+                    <h2>Professional Philosophy</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <h4>Data-Driven Decision Making</h4>
+                            <p>Leveraging quantitative analysis and empirical evidence to inform strategic business decisions and optimize outcomes.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>Continuous Innovation</h4>
+                            <p>Staying current with emerging technologies and methodologies to deliver cutting-edge solutions.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>Business Impact</h4>
+                            <p>Focusing on solutions that deliver measurable ROI and create tangible value for stakeholders.</p>
+                        </div>
+                        <div class="value-card">
+                            <h4>Technical Excellence</h4>
+                            <p>Maintaining high standards in code quality, system architecture, and analytical rigor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aryan Tanwar. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/aryantanwar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/aryantanwar" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:atanwar@iu.edu">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

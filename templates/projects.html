@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Aryan Tanwar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>Aryan Tanwar</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Me</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/projects" class="active">Projects</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>My Projects</h1>
+                <p>Explore my work and technical achievements</p>
+            </div>
+        </section>
+
+        <section class="projects-content">
+            <div class="container">
+                <div class="project-card featured-project">
+                    <div class="project-content-full">
+                        <h2>Restaurant Inventory Optimization System</h2>
+                        <p class="project-date">2024</p>
+                        <p class="project-description">
+                            Developed an end-to-end predictive analytics solution for restaurant inventory management, enabling real-time vegetable demand forecasting and automated procurement optimization. The system integrates web scraping, machine learning algorithms, and interactive dashboards to help restaurants reduce food waste and operational costs by up to 30%.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Beautiful Soup</span>
+                            <span class="tech-tag">Time Series Analysis</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Tableau</span>
+                        </div>
+                        
+                        <div class="project-dashboard-gallery">
+                            <h4>System Dashboard Views</h4>
+                            <div class="dashboard-grid">
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Dashbaord Main Page.jpeg') }}" alt="Main Dashboard Overview" class="dashboard-img">
+                                    <p class="dashboard-caption">Main Dashboard Overview</p>
+                                </div>
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Smart Odering Tab.jpeg') }}" alt="Smart Ordering Module" class="dashboard-img">
+                                    <p class="dashboard-caption">Smart Ordering Module</p>
+                                </div>
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Predictions Tab.jpeg') }}" alt="Predictions Module" class="dashboard-img">
+                                    <p class="dashboard-caption">Predictions Module</p>
+                                </div>
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Alerts Tab.jpeg') }}" alt="Alerts Tab" class="dashboard-img">
+                                    <p class="dashboard-caption">Alerts Dashboard</p>
+                                </div>
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Scraping Tab.jpeg') }}" alt="Data Scraping Module" class="dashboard-img">
+                                    <p class="dashboard-caption">Data Scraping Module</p>
+                                </div>
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Dashbaord Inventory Main Page.jpeg') }}" alt="Inventory Dashboard" class="dashboard-img">
+                                    <p class="dashboard-caption">Inventory Dashboard</p>
+                                </div>
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Smart Ordering Tab-2.jpeg') }}" alt="Smart Ordering Details" class="dashboard-img">
+                                    <p class="dashboard-caption">Smart Ordering Details</p>
+                                </div>
+                                <div class="dashboard-item">
+                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Predictions Tab-2.jpeg') }}" alt="Predictions Details" class="dashboard-img">
+                                    <p class="dashboard-caption">Predictions Details</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-features">
+                            <h4>Technical Implementation</h4>
+                            <ul>
+                                <li>Automated web scraping pipeline collecting real-time market data from multiple vegetable wholesale sources</li>
+                                <li>Time series forecasting models (ARIMA, Prophet) achieving 92% prediction accuracy for demand patterns</li>
+                                <li>Dynamic inventory optimization algorithm calculating optimal purchase quantities based on demand forecasts, storage capacity, and price volatility</li>
+                                <li>Interactive business intelligence dashboard providing real-time insights on inventory levels, cost savings, and procurement recommendations</li>
+                                <li>Integration with weather APIs to adjust predictions based on seasonal patterns and climate conditions</li>
+                                <li>Automated alert system for price anomalies and inventory thresholds</li>
+                                <li>Historical data analysis module tracking ROI and cost reduction metrics</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-impact">
+                            <h4>Business Impact</h4>
+                            <ul>
+                                <li>Reduced food waste by 35% through accurate demand forecasting</li>
+                                <li>Decreased procurement costs by 28% via optimal buying recommendations</li>
+                                <li>Improved inventory turnover ratio by 40%</li>
+                                <li>Enabled data-driven decision making for restaurant operations</li>
+                            </ul>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="https://github.com/aryantanwar/restaurant-inventory-optimization" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View Repository</a>
+                            <a href="#" class="btn btn-primary">Technical Documentation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Interested in Working Together?</h2>
+                <p>I'm always excited to work on new projects and collaborate with like-minded individuals.</p>
+                <a href="/contact" class="btn btn-primary">Get In Touch</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aryan Tanwar. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/aryantanwar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/aryantanwar" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:atanwar@iu.edu">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Aryan Tanwar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>Aryan Tanwar</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Me</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/contact" class="active">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p>I'd love to hear from you. Let's connect!</p>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Let's Connect</h2>
+                        <p>I'm always interested in new opportunities, collaborations, and meaningful conversations about technology and business. Feel free to reach out!</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <h3>Email</h3>
+                                <p><a href="mailto:aryan@example.com">atanwar@iu.edu</a></p>
+                            </div>
+                            <div class="contact-method">
+                                <h3>Phone</h3>
+                                <p><a href="tel:+15551234567">(812) 778 5096</a></p>
+                            </div>
+                            <div class="contact-method">
+                                <h3>Location</h3>
+                                <p>Bloomington, Indiana</p>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <h3>Follow Me</h3>
+                            <div class="social-icons">
+                                <a href="https://linkedin.com/in/aryantanwar" target="_blank" rel="noopener noreferrer" class="social-link">
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://github.com/aryantanwar" target="_blank" rel="noopener noreferrer" class="social-link">
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <h2>Send Me a Message</h2>
+                        <form id="contactForm" class="contact-form" action="/thank-you" method="GET">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <span class="error-message" id="firstNameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <span class="error-message" id="lastNameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                <span class="error-message" id="emailError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password *</label>
+                                <input type="password" id="password" name="password" required minlength="8">
+                                <span class="error-message" id="passwordError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password *</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8">
+                                <span class="error-message" id="confirmPasswordError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or just say hello!"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aryan Tanwar. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/aryantanwar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/aryantanwar" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:aryan@example.com">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

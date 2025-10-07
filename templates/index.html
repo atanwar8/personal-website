@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Tanwar - Personal Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>Aryan Tanwar</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="/about">About Me</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Aryan Tanwar</h2>
+                    <p class="hero-subtitle">Data Science | Business Analytics | Information Systems</p>
+                    <p>Master of Science in Information Systems candidate at Kelley School of Business, specializing in predictive analytics, machine learning, and data-driven business solutions.</p>
+                    <div class="hero-buttons">
+                        <a href="/projects" class="btn btn-primary">View Projects</a>
+                        <a href="/resume" class="btn btn-secondary">Resume</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='images/atanwar@iu.edu-4d222ff5.jpg') }}" alt="Aryan Tanwar" class="profile-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-intro">
+            <div class="container">
+                <h3>Professional Focus</h3>
+                <div class="intro-grid">
+                    <div class="intro-card">
+                        <h4>Data Analytics</h4>
+                        <p>Advanced statistical modeling, predictive analytics, and business intelligence solutions for operational optimization.</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>Machine Learning</h4>
+                        <p>Developing and deploying ML models for demand forecasting, time series analysis, and automated decision systems.</p>
+                    </div>
+                    <div class="intro-card">
+                        <h4>Business Strategy</h4>
+                        <p>Translating complex data insights into actionable business strategies that drive measurable ROI and competitive advantage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aryan Tanwar. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/aryantanwar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/aryantanwar" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:atanwar@iu.edu">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
