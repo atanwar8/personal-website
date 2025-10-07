@@ -86,11 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 isValid = false;
             }
             
-            // If form is valid, redirect to thank you page
+            // If form is valid, redirect to the Flask thank-you route
             if (isValid) {
                 // In a real application, you would send the data to a server here
-                // For this demo, we'll just redirect to the thank you page
-                window.location.href = 'thankyou.html';
+                // For this demo, redirect to the Flask route that renders the thank-you template
+                window.location.href = '/thank-you';
             }
         });
         
