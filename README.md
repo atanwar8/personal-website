@@ -9,11 +9,13 @@ A modern, responsive personal portfolio website showcasing skills, projects, and
 ## Features
 
 - **Flask Web Framework**: Dynamic routing and template rendering
+- **SQLite Database**: Dynamic projects database with Data Access Layer (DAL)
+- **Project Management**: Add, view, and manage projects through web interface
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Modern UI/UX**: Clean, professional design with smooth animations
 - **Accessibility**: WCAG compliant with proper semantic HTML and keyboard navigation
 - **Interactive Contact Form**: HTML5 validation with real-time feedback
-- **Multi-page Structure**: Home, About, Resume, Projects, and Contact pages
+- **Multi-page Structure**: Home, About, Resume, Projects, Add Project, and Contact pages
 - **Cross-browser Compatibility**: Tested on Chrome, Firefox, Safari, and Edge
 
 ## Project Structure
@@ -21,12 +23,16 @@ A modern, responsive personal portfolio website showcasing skills, projects, and
 ```
 Personal HTML/
 ├── app.py                  # Flask application with routes
+├── DAL.py                  # Data Access Layer for database operations
+├── populate_db.py          # Script to add sample data
+├── projects.db             # SQLite database (created automatically)
 ├── requirements.txt        # Python dependencies
 ├── templates/              # HTML templates
 │   ├── index.html         # Homepage
 │   ├── about.html         # About Me page
 │   ├── resume.html        # Resume/CV page
-│   ├── projects.html      # Projects showcase
+│   ├── projects.html      # Projects showcase (now database-driven)
+│   ├── add_project.html   # Add new project form
 │   ├── contact.html       # Contact form
 │   └── thankyou.html      # Thank you page
 ├── static/                 # Static assets
@@ -34,6 +40,7 @@ Personal HTML/
 │   ├── script.js          # JavaScript functionality
 │   ├── images/            # Image assets
 │   │   ├── atanwar@iu.edu-4d222ff5.jpg
+│   │   ├── placeholder.jpg # Placeholder for missing images
 │   │   └── project1-dashboard/
 │   │       ├── Dashbaord Main Page.jpeg
 │   │       ├── Smart Odering Tab.jpeg
@@ -50,6 +57,7 @@ Personal HTML/
 ## Technologies Used
 
 - **Flask**: Python web framework for routing and template rendering
+- **SQLite**: Lightweight database for storing project information
 - **Jinja2**: Template engine for dynamic HTML generation
 - **HTML5**: Semantic markup with accessibility features
 - **CSS3**: Modern styling with Flexbox and Grid layouts
@@ -76,17 +84,37 @@ Personal HTML/
 - Downloadable PDF resume
 
 ### Projects
-- Restaurant Inventory Optimization System showcase
-- Real-time data scraping from agricultural sources
-- Machine learning-based demand forecasting
-- Interactive dashboard screenshots
-- Technology stack and business impact details
+- **Database-Driven Display**: Projects are now stored in SQLite database
+- **Dynamic Table View**: Projects displayed in responsive HTML table
+- **Add Project Form**: Web interface to add new projects
+- **Image Management**: Support for project images with fallback placeholder
+- **Technology Stack**: Display tech stack as tags
+- **GitHub Integration**: Direct links to project repositories
 
 ### Contact
 - Interactive contact form with validation
 - Contact information
 - Social media links
 - Form validation with error messages
+
+### Add Project
+- **Form Validation**: Required fields validation with error messages
+- **Image Management**: Reference images by filename in static/images folder
+- **Technology Stack**: Comma-separated list of technologies
+- **GitHub Integration**: Optional repository URL
+- **Flash Messages**: Success/error feedback after submission
+
+## Database Schema
+
+The `projects` table includes the following columns:
+- `id`: Primary key (auto-increment)
+- `title`: Project title (required)
+- `description`: Project description (required)
+- `image_filename`: Path to project image (required)
+- `tech_stack`: Technologies used (optional)
+- `project_date`: Project completion date (optional)
+- `github_url`: GitHub repository URL (optional)
+- `created_at`: Timestamp when project was added
 
 ## Form Validation
 
@@ -139,8 +167,14 @@ The contact form includes comprehensive validation:
 - About: `/about`
 - Resume: `/resume`
 - Projects: `/projects`
+- Add Project: `/add-project`
 - Contact: `/contact`
 - Thank You: `/thank-you` or `/thankyou`
+
+### Database Setup
+1. **Automatic Setup**: Database and table are created automatically on first run
+2. **Sample Data**: Run `python populate_db.py` to add sample projects
+3. **Manual Addition**: Use the web interface at `/add-project` to add projects
 
 ## Browser Support
 
