@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/aryantanwar/Library/Mobile Documents/com~apple~CloudDocs/Documents/MSIS-Kelley/AiDD/Personal HTML/.venv"
+VIRTUAL_ENV="/Users/aryantanwar/Library/Mobile Documents/com~apple~CloudDocs/Documents/MSIS-Kelley/AiDD/Personal Website/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

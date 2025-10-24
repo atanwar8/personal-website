@@ -18,6 +18,7 @@
                     <li><a href="/about">About Me</a></li>
                     <li><a href="/resume">Resume</a></li>
                     <li><a href="/projects" class="active">Projects</a></li>
+                    <li><a href="/add-project">Add Project</a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
                 <div class="hamburger">
@@ -39,91 +40,82 @@
 
         <section class="projects-content">
             <div class="container">
-                <div class="project-card featured-project">
-                    <div class="project-content-full">
-                        <h2>Restaurant Inventory Optimization System</h2>
-                        <p class="project-date">2024</p>
-                        <p class="project-description">
-                            Developed an end-to-end predictive analytics solution for restaurant inventory management, enabling real-time vegetable demand forecasting and automated procurement optimization. The system integrates web scraping, machine learning algorithms, and interactive dashboards to help restaurants reduce food waste and operational costs by up to 30%.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Beautiful Soup</span>
-                            <span class="tech-tag">Time Series Analysis</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">Tableau</span>
-                        </div>
-                        
-                        <div class="project-dashboard-gallery">
-                            <h4>System Dashboard Views</h4>
-                            <div class="dashboard-grid">
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Dashbaord Main Page.jpeg') }}" alt="Main Dashboard Overview" class="dashboard-img">
-                                    <p class="dashboard-caption">Main Dashboard Overview</p>
-                                </div>
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Smart Odering Tab.jpeg') }}" alt="Smart Ordering Module" class="dashboard-img">
-                                    <p class="dashboard-caption">Smart Ordering Module</p>
-                                </div>
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Predictions Tab.jpeg') }}" alt="Predictions Module" class="dashboard-img">
-                                    <p class="dashboard-caption">Predictions Module</p>
-                                </div>
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Alerts Tab.jpeg') }}" alt="Alerts Tab" class="dashboard-img">
-                                    <p class="dashboard-caption">Alerts Dashboard</p>
-                                </div>
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Scraping Tab.jpeg') }}" alt="Data Scraping Module" class="dashboard-img">
-                                    <p class="dashboard-caption">Data Scraping Module</p>
-                                </div>
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Dashbaord Inventory Main Page.jpeg') }}" alt="Inventory Dashboard" class="dashboard-img">
-                                    <p class="dashboard-caption">Inventory Dashboard</p>
-                                </div>
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Smart Ordering Tab-2.jpeg') }}" alt="Smart Ordering Details" class="dashboard-img">
-                                    <p class="dashboard-caption">Smart Ordering Details</p>
-                                </div>
-                                <div class="dashboard-item">
-                                    <img src="{{ url_for('static', filename='images/project1-dashboard/Predictions Tab-2.jpeg') }}" alt="Predictions Details" class="dashboard-img">
-                                    <p class="dashboard-caption">Predictions Details</p>
-                                </div>
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">
+                                {{ message }}
                             </div>
-                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
 
-                        <div class="project-features">
-                            <h4>Technical Implementation</h4>
-                            <ul>
-                                <li>Automated web scraping pipeline collecting real-time market data from multiple vegetable wholesale sources</li>
-                                <li>Time series forecasting models (ARIMA, Prophet) achieving 92% prediction accuracy for demand patterns</li>
-                                <li>Dynamic inventory optimization algorithm calculating optimal purchase quantities based on demand forecasts, storage capacity, and price volatility</li>
-                                <li>Interactive business intelligence dashboard providing real-time insights on inventory levels, cost savings, and procurement recommendations</li>
-                                <li>Integration with weather APIs to adjust predictions based on seasonal patterns and climate conditions</li>
-                                <li>Automated alert system for price anomalies and inventory thresholds</li>
-                                <li>Historical data analysis module tracking ROI and cost reduction metrics</li>
-                            </ul>
-                        </div>
-
-                        <div class="project-impact">
-                            <h4>Business Impact</h4>
-                            <ul>
-                                <li>Reduced food waste by 35% through accurate demand forecasting</li>
-                                <li>Decreased procurement costs by 28% via optimal buying recommendations</li>
-                                <li>Improved inventory turnover ratio by 40%</li>
-                                <li>Enabled data-driven decision making for restaurant operations</li>
-                            </ul>
-                        </div>
-
-                        <div class="project-links">
-                            <a href="https://github.com/aryantanwar/restaurant-inventory-optimization" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View Repository</a>
-                            <a href="#" class="btn btn-primary">Technical Documentation</a>
-                        </div>
-                    </div>
+                <!-- Add Project Button -->
+                <div class="add-project-section">
+                    <a href="/add-project" class="btn btn-primary">Add New Project</a>
                 </div>
+
+                <!-- Projects Table -->
+                {% if projects %}
+                <div class="projects-table-container">
+                    <table class="projects-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Tech Stack</th>
+                                <th>Date</th>
+                                <th>GitHub</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for project in projects %}
+                            <tr>
+                                <td class="project-image-cell">
+                                    {% if project[3] %}
+                                        {% set image_path = 'static/images/' + project[3] %}
+                                        {% if image_path|file_exists %}
+                                            <img src="{{ url_for('static', filename='images/' + project[3]) }}" 
+                                                 alt="{{ project[1] }}" 
+                                                 class="project-table-image">
+                                        {% else %}
+                                            <span class="project-image-filename">No image</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="project-image-filename">No image</span>
+                                    {% endif %}
+                                </td>
+                                <td class="project-title">{{ project[1] }}</td>
+                                <td class="project-description">{{ project[2] }}</td>
+                                <td class="project-tech">
+                                    {% if project[4] %}
+                                        {% for tech in project[4].split(',') %}
+                                            <span class="tech-tag">{{ tech.strip() }}</span>
+                                        {% endfor %}
+                                    {% endif %}
+                                </td>
+                                <td class="project-date">{{ project[5] or 'N/A' }}</td>
+                                <td class="project-github">
+                                    {% if project[6] %}
+                                        <a href="{{ project[6] }}" target="_blank" rel="noopener noreferrer" class="github-link">View Code</a>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="no-projects">
+                    <h3>No projects found</h3>
+                    <p>Start by adding your first project!</p>
+                    <a href="/add-project" class="btn btn-primary">Add Project</a>
+                </div>
+                {% endif %}
             </div>
         </section>
 
