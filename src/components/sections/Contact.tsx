@@ -43,7 +43,6 @@ export default function Contact() {
   return (
     <section id="contact" data-card className="deck-card contact" aria-labelledby="contact-title">
       <div className="wrap section ct">
-        <p className="tag rv">06 · Contact</p>
         <h2 id="contact-title" className="ct-h" aria-label="Let's build something together.">
           <HopLine text="Let's build" />
           <HopLine text="something together." accent />

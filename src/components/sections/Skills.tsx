@@ -93,8 +93,8 @@ export default function Skills(){
  .kb-cap>span{font-size:clamp(11px,.95vw,13.5px);line-height:1.15;font-weight:600;color:#24291f;text-align:center;letter-spacing:-.015em}
  .kb-key:hover .kb-cap{transform:translateY(2px)}
  .kb-key:active .kb-cap{transform:translateY(5px);box-shadow:inset 0 1px 3px #0002}
- .kb-key.is-sel{background:linear-gradient(160deg,#ff8a3d,#d4500f);box-shadow:inset 0 1px 1px #ffc49a,0 2px 0 #7a2a06,0 3px 8px #e8641b66}
- .kb-key.is-sel .kb-cap{background:linear-gradient(160deg,#ff9550,#f2701f);transform:translateY(3px);box-shadow:inset 0 1px 0 #ffbf8f,inset 0 -2px 4px #b6460c55}
+ .kb-key.is-sel{background:linear-gradient(160deg,#e0712e,#9a3f09);box-shadow:inset 0 1px 1px #ffc49a,0 2px 0 #7a2a06,0 3px 8px #e8641b66}
+ .kb-key.is-sel .kb-cap{background:linear-gradient(160deg,#c2540f,#a8460a);transform:translateY(3px);box-shadow:inset 0 1px 0 #ffbf8f,inset 0 -2px 4px #b6460c55}
  .kb-key.is-sel .kb-cap>span{color:#fff}
  .kb-key.is-dim{opacity:.28;filter:saturate(.2)}
  .kb-key:focus-visible{outline:3px solid #e97831;outline-offset:3px}

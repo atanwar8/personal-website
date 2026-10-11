@@ -29,6 +29,8 @@ const GRAD: Stop = {
 };
 const STOPS: Stop[] = [...ORDER.map((id) => ({...MAP_PLACES.find((p) => p.id === id)!, when: WHEN[id]})), GRAD];
 const KIND_COLOR: Record<MapKind, string> = {Internships: "#3b6fd4", Research: "#7a5cc4", Projects: "#e0763a", Education: "#2f8a5c"};
+// Darker shades for tag text: the bright colours are fine as dots but too light for small text (≥4.5:1 here).
+const KIND_TEXT: Record<MapKind, string> = {Internships: "#2a59b8", Research: "#5e43a6", Projects: "#a8501c", Education: "#1f6a45"};
 
 function Mark({stop, size}: {stop: Stop; size: number}) {
   if (stop.avatar) return <Image unoptimized src="/aryan-avatar-memoji.png" width={size} height={size} alt="" className="zz-avatar-img" />;
@@ -134,7 +136,7 @@ export default function Experience() {
                 <li key={s.id} ref={(el) => {stopRefs.current[i] = el;}} className={`ex-stop${i < lit ? " is-lit" : ""}`}>
                   {s.avatar ? <span className="ex-dot" aria-hidden="true" /> : <span className="ex-logo" aria-hidden="true"><Mark stop={s} size={30} /></span>}
                   <p className="ex-year mono">
-                    <span className="ex-kind" style={{"--k": KIND_COLOR[s.kind]} as React.CSSProperties}>{s.kind}</span>
+                    <span className="ex-kind" style={{"--k": KIND_COLOR[s.kind], "--kt": KIND_TEXT[s.kind]} as React.CSSProperties}>{s.kind}</span>
                     {s.when}
                   </p>
                   <h3 className="ex-title">{s.place}</h3>
@@ -179,7 +181,7 @@ export default function Experience() {
         .ex-logo img { border-radius: 7px; object-fit: contain; }
         .ex-stop.is-lit .ex-logo { filter: none; opacity: 1; transform: scale(1.06); box-shadow: inset 0 0 0 1px #193e3214, 0 0 0 3px var(--green), 0 12px 24px -12px #193e3277; }
         .ex-year { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 0.8125rem; font-weight: 600; letter-spacing: .02em; }
-        .ex-kind { padding: 3px 9px; border-radius: 999px; font-family: var(--font-sans, inherit); font-size: 11px; font-weight: 600; letter-spacing: 0; color: var(--k); background: color-mix(in srgb, var(--k) 12%, transparent); }
+        .ex-kind { padding: 3px 9px; border-radius: 999px; font-family: var(--font-sans, inherit); font-size: 11px; font-weight: 600; letter-spacing: 0; color: var(--kt); background: color-mix(in srgb, var(--k) 12%, transparent); }
         .ex-title { margin: 10px 0 0; font-size: clamp(1.375rem, 2vw, 1.875rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; text-wrap: balance; }
         .ex-role { margin-top: 12px; }
         .ex-place { margin: 0; font-size: 0.875rem; color: var(--ink-2); font-weight: 600; }
