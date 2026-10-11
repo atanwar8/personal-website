@@ -1,5 +1,5 @@
 "use client";
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useScrollProgress, useReducedMotion, useStill} from '@/lib/hooks';
 import Badge from './Badge';
 const LAYERS=[
@@ -24,14 +24,31 @@ const COCOA=Array.from({length:46},(_,k)=>{const u=.08+rnd(k*3.1)*.82,v=.08+rnd(
   return {x:r2(169*u+178*v),y:r2(82-82*u+87*v),r:r2(1.4+rnd(k*1.3)*1.4),d:r2(rnd(k*5.3)*.4)};});
 // Settled layers stack 31 apart; the ones still to come hover 44 apart above them.
 const layerY=(i:number,settled:number)=>260-i*31-Math.max(0,i-settled)*44;
+// Same as layerY but with a fractional "settled" amount, so layers glide down with the scroll
+// instead of snapping from one step to the next.
+const layerTf=(i:number,s:number)=>`translate(137px, ${(260-i*31-Math.max(0,i-s)*44).toFixed(2)}px)`;
 
 export default function About(){
-  const [progress,setProgress]=useState(0); const [pick,setPick]=useState<number|null>(null);
+  // Scroll position only re-renders when the landed layer or the finished state changes;
+  // the in-between glide is written straight to the layers, so scrolling stays smooth.
+  const [scrollStep,setScrollStep]=useState(0); const [scrollDone,setScrollDone]=useState(false);
+  const [pick,setPick]=useState<number|null>(null);
   const reduced=useReducedMotion();const still=useStill();const previous=useRef(0);
-  const ref=useScrollProgress<HTMLElement>((r,vh)=>-r.top/Math.max(1,r.height-vh),(p)=>{setProgress(p);if(Math.abs(p-previous.current)>.006){setPick(null);previous.current=p;}});
+  const sRef=useRef(0); const layerRefs=useRef<(SVGGElement|null)[]>([]);
+  const applyLayers=(s:number)=>{sRef.current=s;layerRefs.current.forEach((g,i)=>{if(g)g.style.transform=layerTf(i,s);});};
+  const ref=useScrollProgress<HTMLElement>((r,vh)=>-r.top/Math.max(1,r.height-vh),(p)=>{
+    const moved=Math.abs(p-previous.current)>.006;
+    if(moved){setPick(null);previous.current=p;}
+    const s=Math.min(3,Math.max(0,(p/(DONE_AT*.8))*4));
+    if(moved||pick===null){layerRefs.current.forEach(g=>g?.classList.remove('is-jump'));applyLayers(s);}
+    setScrollStep(Math.min(3,Math.floor(s)));setScrollDone(p>=DONE_AT);
+  });
+  // Clicking a numbered step jumps the cake there with a spring.
+  useEffect(()=>{if(pick===null)return;layerRefs.current.forEach(g=>g?.classList.add('is-jump'));applyLayers(pick);},[pick]);
   // Which layer has just landed (0 = base … 3 = top), and whether the cocoa is on.
-  const step=pick??(reduced?3:Math.min(3,Math.floor((progress/(DONE_AT*.8))*4)));
-  const done=pick===null&&(reduced||progress>=DONE_AT);
+  const step=pick??(reduced?3:scrollStep);
+  const done=pick===null&&(reduced||scrollDone);
+  const sNow=reduced?3:pick??sRef.current;
   const ax=137+348+6, ay=layerY(step,step)+94; // callout anchor: the landed layer's right corner
   return <section id="about" ref={ref} data-card className={`deck-card tone-paper about-story${still?' is-still':''}${done?' is-done':''}`} aria-labelledby="about-title">
     <div className="tiramisu-sticky wrap">
@@ -53,7 +70,7 @@ export default function About(){
           <div className="cake-figure">
             <svg viewBox={`${VB.x} ${VB.y} ${VB.w} ${VB.h}`} role="img" aria-label="Four layers of tiramisu stack up as you scroll down">
               <defs>
-                <filter id="cake-texture"><feTurbulence type="fractalNoise" baseFrequency=".48" numOctaves="3" seed="4" result="noise"/><feColorMatrix in="noise" type="saturate" values="0" result="mono-noise"/><feComponentTransfer in="mono-noise" result="soft-noise"><feFuncA type="linear" slope=".2"/></feComponentTransfer><feComposite in="soft-noise" in2="SourceGraphic" operator="in" result="grain"/><feBlend in="SourceGraphic" in2="grain" mode="soft-light"/></filter>
+                <pattern id="cake-grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.8" r=".8" fill="#000" opacity=".07"/><circle cx="5" cy="4.6" r=".7" fill="#fff" opacity=".1"/><circle cx="3.6" cy="6.2" r=".5" fill="#000" opacity=".05"/></pattern>
                 <filter id="cake-shadow"><feGaussianBlur stdDeviation="14"/></filter>
                 <linearGradient id="plate" x2="0" y2="1"><stop stopColor="#fffdf6"/><stop offset="1" stopColor="#ddd3bf"/></linearGradient>
                 <linearGradient id="sheen" x2="1"><stop stopColor="#fff" stopOpacity="0"/><stop offset=".5" stopColor="#fff" stopOpacity=".55"/><stop offset="1" stopColor="#fff" stopOpacity="0"/></linearGradient>
@@ -62,11 +79,11 @@ export default function About(){
               <ellipse cx="310" cy="448" rx="230" ry="60" fill="#473b24" opacity=".14" filter="url(#cake-shadow)"/>
               <path d="M50 358L307 226 580 364 322 506Z" fill="#c6bda7"/><path d="M50 348L307 216 580 354 322 496Z" fill="url(#plate)"/>
               <path d="M80 349L307 234 550 354 321 477Z" fill="none" stroke="#d9d0bc" strokeWidth="2"/>
-              {LAYERS.map((l,i)=>{const floating=i>step;return <g key={l.name} className="cake-layer" style={{transform:`translate(137px, ${layerY(i,step)}px)`}}>
+              {LAYERS.map((l,i)=>{const floating=i>step;return <g key={l.name} ref={el=>{layerRefs.current[i]=el;}} className="cake-layer" style={{transform:layerTf(i,sNow)}}>
                 <g className={`cake-float${floating?' is-floating':''}`} style={{animationDelay:`${-i*.9}s`}}>
                   <path d="M0 82L178 169 178 203 0 116Z" fill={l.front}/><path d="M178 169L348 77 348 111 178 203Z" fill={l.side}/>
                   {PORES[i].map((b,k)=><circle key={k} cx={b.x} cy={b.y} r={b.r} fill={l.pore} opacity={l.pore==='#ffffff'?.45:.28}/>)}
-                  <path d="M0 82L169 0 348 77 178 169Z" fill={l.top} filter="url(#cake-texture)"/>
+                  <path d="M0 82L169 0 348 77 178 169Z" fill={l.top}/><path d="M0 82L169 0 348 77 178 169Z" fill="url(#cake-grain)"/>
                   <path d="M1 83L178 170 347 78" fill="none" stroke={i===3?'#5c3929':'#fff5d9'} strokeOpacity=".35" strokeWidth="2"/>
                   {(i===step||(done&&i===3))&&<g clipPath="url(#cake-top-clip)" key={`sheen-${step}-${done}`}><rect className="cake-sheen" x="-160" y="-10" width="140" height="190" fill="url(#sheen)"/></g>}
                   {i===3&&<g className="cake-cocoa" aria-hidden="true">{COCOA.map((c,k)=><circle key={k} cx={c.x} cy={c.y} r={c.r} fill="#4a2f1f" style={{animationDelay:`${c.d}s`}}/>)}</g>}
@@ -110,7 +127,7 @@ export default function About(){
       .cake-rail button:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
 
       /* Layers snap onto the stack with a quick spring; the ones still to come float. */
-      .cake-layer{transition:transform .5s cubic-bezier(.34,1.45,.55,1);}
+      .cake-layer{transition:transform .14s ease-out;}.cake-layer.is-jump{transition:transform .5s cubic-bezier(.34,1.45,.55,1);}
       .cake-float.is-floating{animation:cake-float 3.2s ease-in-out infinite;}
       @keyframes cake-float{50%{transform:translateY(-7px)}}
       .cake-sheen{animation:cake-sheen .75s cubic-bezier(.3,.6,.3,1) .12s both;}
