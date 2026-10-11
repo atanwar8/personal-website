@@ -112,7 +112,6 @@ export default function Contact() {
           >
             Back to top ↑
           </a>
-          <span>Built with Next.js</span>
         </footer>
       </div>
 

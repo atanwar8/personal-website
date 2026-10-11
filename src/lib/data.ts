@@ -1,7 +1,7 @@
 /*
  * Single source of content for the site. Components only read from here.
  *
- * Source of truth: public/Aryan_Tanwar_Resume.pdf (Aryan_Tanwar_Resume_FT-8, 23 Sep 2026),
+ * Source of truth: public/Aryan_Tanwar_Resume.pdf (Aryan_Tanwar_Resume_FT-2),
  * plus the master résumé (Aryan_Tanwar_Master_Resume.tex) and Aryan_Tanwar_Resume_FT-General.pdf
  * for the Toyota project, coursework and the peer-tutor line. Nothing here is invented:
  * if it is not in one of those files, it is not on the site.
@@ -273,7 +273,6 @@ export const PROJECTS: Project[] = [
     ],
     tech: ["Google TimesFM", "N8N", "Web Scraping", "Time Series Forecasting"],
     visual: "stock",
-    github: "https://github.com/atanwar8/Smart-Stock-AI",
     report: "/Aryan_Tanwar_SmartStock_AI_Report.pdf",
   },
 ];
