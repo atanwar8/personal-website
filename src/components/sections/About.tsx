@@ -106,7 +106,7 @@ export default function About(){
         </div>
       </div>
     </div>
-    <style href="tiramisu-v2" precedence="default">{`
+    <style href="tiramisu-v3" precedence="default">{`
       .about-story{height:210svh;min-height:1500px;background:#ebe7d9!important;}
       .tiramisu-sticky{position:sticky;top:0;min-height:100svh;display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.5fr);align-items:center;gap:40px;padding-block:120px 40px;}
       .recipe-copy{max-width:480px;}.recipe-copy .h-section{font-size:clamp(2.5rem,3.9vw,4.5rem);}.recipe-intro{margin-top:24px;}
@@ -169,7 +169,7 @@ export default function About(){
       @media(max-width:760px){
         .about-story{height:270svh;min-height:1800px;}
         .tiramisu-sticky{display:flex;flex-direction:column;height:100svh;min-height:0;padding-top:88px;padding-bottom:12px;gap:0;}
-        .recipe-copy{flex:none;padding-top:0;}.recipe-copy .h-section{font-size:clamp(1.9rem,8.6vw,2.4rem);}.recipe-intro{font-size:14px;margin-top:8px;line-height:1.45;}
+        .recipe-copy{flex:none;align-self:flex-start;max-width:calc(100% - 126px);margin:0;padding-top:0;text-align:left;}.recipe-copy .h-section{font-size:clamp(1.9rem,8.6vw,2.4rem);}.recipe-intro{font-size:14px;margin-top:8px;line-height:1.45;}
         .cake-special{position:static;flex:none;display:flex;align-items:baseline;justify-content:center;gap:10px;margin-top:10px;text-align:center;}
         .cake-special>.mono{font-size:10.5px;letter-spacing:.18em;}.cake-special-title{font-size:2.1rem;margin:0;transform-origin:50% 50%;}.cake-special-sub{display:none;}
         .dessert-stage{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;margin-top:2px;}

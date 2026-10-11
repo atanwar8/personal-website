@@ -263,7 +263,7 @@ export default function Work() {
         </div>
       </div>
 
-      <style href="work" precedence="default">{`
+      <style href="work-v2" precedence="default">{`
         .wk-rail { display: flex; gap: 10px; margin-top: 48px; height: min(78svh, 600px); }
         .wk-panel {
           position: relative; flex: 1 1 0; min-width: 76px; display: flex; border-radius: 26px; overflow: hidden;
@@ -444,13 +444,16 @@ export default function Work() {
           .wk-content { display: none; padding: 0 18px 20px; grid-template-rows: auto 280px; }
           .is-open .wk-content { display: grid; }
           .wk-feats { grid-template-columns: 1fr; }
-          /* Lakehouse: sources on one row, layers stacked full width underneath. */
-          .lk-body { grid-template-columns: 1fr; gap: 14px; padding: 16px; align-content: center; }
-          .lk-sources { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-          .lk-flow { display: none; }
-          .lk-layer { padding: 12px 14px; }
-          .lk-sub { white-space: nowrap; }
-          .lk-foot { flex-wrap: wrap; gap: 4px 12px; }
+          /* Lakehouse: same sources -> flow -> layers animation, with smaller text so it fits. */
+          .lk-body { grid-template-columns: auto minmax(24px, 1fr) minmax(max-content, 1.25fr); padding: 14px 12px; }
+          .lk-sources, .lk-flow { gap: 10px; }
+          .lk-src { padding: 6px 8px; border-radius: 8px; font-size: 10px; line-height: 16px; }
+          .lk-line { height: 28px; margin: 0 4px; }
+          .lk-layers { gap: 6px; }
+          .lk-layer { flex-direction: column; align-items: flex-start; gap: 1px; padding: 8px 11px; border-radius: 10px; }
+          .lk-name { font-size: 14px; }
+          .lk-sub { font-size: 9.5px; white-space: nowrap; }
+          .lk-foot { flex-wrap: wrap; gap: 2px 12px; padding: 8px 12px; font-size: 10px; }
           /* ROI: the 68% gauge gets its own row above the bars so nothing overlaps. */
           .roi-chart { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto 190px; row-gap: 18px; padding: 18px 16px 14px; }
           .roi-gauge { grid-column: 1 / -1; order: -1; height: auto; }
