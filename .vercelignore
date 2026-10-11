@@ -3,3 +3,8 @@
 node_modules
 .DS_Store
 scripts
+
+# Local-only files, never deployed
+aryan-portfolio-updated.zip
+.claude
+.next-dev
