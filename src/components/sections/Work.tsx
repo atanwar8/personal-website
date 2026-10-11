@@ -139,7 +139,7 @@ function StockUI({ active }: { active: boolean }) {
       <div className="st-flow">
         <div className="st-card st-prices" aria-hidden="true">
           <div>
-            {[...TICKER, ...TICKER].map(([n, v, dir], i) => (
+            {[...TICKER, ...TICKER, ...TICKER].map(([n, v, dir], i) => (
               <span key={i} className={`is-${dir}`}>
                 <b>{n}</b>
                 <em className="mono">{v} {dir === "up" ? "▲" : "▼"}</em>
@@ -323,12 +323,13 @@ export default function Work() {
         .st-flow { display: flex; align-items: center; padding: 18px 16px 4px; }
         .st-card { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; height: 74px; padding: 8px 12px; border-radius: 14px; background: #fffdf7; box-shadow: inset 0 0 0 1px var(--line), 0 6px 14px -10px #285a4560; font-size: 12px; font-weight: 600; }
         .st-prices { width: 132px; padding: 6px 10px; overflow: hidden; mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
-        .st-prices > div { display: grid; gap: 3px; width: 100%; }
-        .is-open .st-prices > div { animation: st-tick 7s linear infinite; }
-        .st-prices span { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; white-space: nowrap; font-size: 11px; font-weight: 500; }
+        .st-prices > div { display: flex; flex-direction: column; width: 100%; will-change: transform; }
+        .is-open .st-prices > div { animation: st-tick 6s linear infinite; }
+        .st-prices span { flex: none; padding: 1.5px 0; display: flex; justify-content: space-between; align-items: baseline; gap: 6px; white-space: nowrap; font-size: 11px; font-weight: 500; }
         .st-prices em { font-style: normal; font-size: 10px; white-space: nowrap; }
         .st-prices .is-up em { color: #d4631c; } .st-prices .is-down em { color: #2f7a55; }
-        @keyframes st-tick { to { transform: translateY(-50%); } }
+        /* Three equal copies with no gaps: moving up exactly one copy loops seamlessly. */
+        @keyframes st-tick { to { transform: translateY(-33.3333%); } }
         .st-out { color: var(--green); }
         .st-wire { position: relative; flex: 1; min-width: 14px; height: 2px; margin: 0 6px; background: repeating-linear-gradient(90deg, #285a4555 0 3px, transparent 3px 7px); }
         .st-wire i { position: absolute; top: -2.5px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #2f7a55; box-shadow: 0 0 7px #3f9a6d; opacity: 0; }
