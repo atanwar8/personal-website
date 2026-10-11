@@ -400,7 +400,7 @@ export default function Work() {
         @keyframes flow { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: calc(100% - 6px); opacity: 0; } }
         .lk-layers { display: grid; gap: 8px; }
         .lk-layer {
-          display: flex; justify-content: space-between; align-items: baseline; padding: 14px 16px; border-radius: 12px;
+          display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 14px 16px; border-radius: 12px;
           transform: translateX(14px); opacity: 0; transition: transform .8s var(--ease), opacity .8s var(--ease);
           transition-delay: calc(.5s + var(--i) * .12s);
         }
@@ -443,6 +443,18 @@ export default function Work() {
           .wk-content { display: none; padding: 0 18px 20px; grid-template-rows: auto 280px; }
           .is-open .wk-content { display: grid; }
           .wk-feats { grid-template-columns: 1fr; }
+          /* Lakehouse: sources on one row, layers stacked full width underneath. */
+          .lk-body { grid-template-columns: 1fr; gap: 14px; padding: 16px; align-content: center; }
+          .lk-sources { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+          .lk-flow { display: none; }
+          .lk-layer { padding: 12px 14px; }
+          .lk-sub { white-space: nowrap; }
+          .lk-foot { flex-wrap: wrap; gap: 4px 12px; }
+          /* ROI: the 68% gauge gets its own row above the bars so nothing overlaps. */
+          .roi-chart { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto 190px; row-gap: 18px; padding: 18px 16px 14px; }
+          .roi-gauge { grid-column: 1 / -1; order: -1; height: auto; }
+          .roi-gauge svg { max-width: 150px; }
+          .roi-pct { margin-top: -36px; font-size: 1.5rem; }
         }
         @media(min-width:861px) and (max-width:1100px) {
           .wk-rail { height:780px; min-height:0; }

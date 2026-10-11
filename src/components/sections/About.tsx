@@ -11,7 +11,7 @@ const LAYERS=[
 // Layers land over the first part of the scroll; past DONE_AT the cocoa goes on.
 const DONE_AT=.78;
 // SVG viewBox, cropped tight to the plate and the floating layers.
-const VB={x:40,y:15,w:560,h:545};
+const VB={x:40,y:-80,w:560,h:640};
 const pct=(v:number)=>`${((v-VB.y)/VB.h)*100}%`;
 // Integer hash → [0,1): identical on server and client (Math.sin can differ in the last digits and break hydration).
 const rnd=(n:number)=>{let h=Math.imul(Math.round(n*1000)^0x9e3779b9,0x85ebca6b);h^=h>>>13;h=Math.imul(h,0xc2b2ae35);h^=h>>>16;return (h>>>0)/4294967296;};
@@ -23,10 +23,11 @@ const PORES=LAYERS.map((_,i)=>Array.from({length:14},(_,k)=>{const t=.06+rnd(i*3
 const COCOA=Array.from({length:46},(_,k)=>{const u=.08+rnd(k*3.1)*.82,v=.08+rnd(k*7.7)*.82;
   return {x:r2(169*u+178*v),y:r2(82-82*u+87*v),r:r2(1.4+rnd(k*1.3)*1.4),d:r2(rnd(k*5.3)*.4)};});
 // Settled layers stack 31 apart; the ones still to come hover 44 apart above them.
-const layerY=(i:number,settled:number)=>260-i*31-Math.max(0,i-settled)*44;
+const GAP=74; // extra space between layers that haven't landed yet
+const layerY=(i:number,settled:number)=>260-i*31-Math.max(0,i-settled)*GAP;
 // Same as layerY but with a fractional "settled" amount, so layers glide down with the scroll
 // instead of snapping from one step to the next.
-const layerTf=(i:number,s:number)=>`translate(137px, ${(260-i*31-Math.max(0,i-s)*44).toFixed(2)}px)`;
+const layerTf=(i:number,s:number)=>`translate(137px, ${(260-i*31-Math.max(0,i-s)*GAP).toFixed(2)}px)`;
 
 export default function About(){
   // Scroll position only re-renders when the landed layer or the finished state changes;
@@ -163,22 +164,26 @@ export default function About(){
       .small-badge{position:absolute;left:calc(var(--gutter) + 72px);top:0;width:130px;height:250px;z-index:3;}.small-badge .ly{left:0;top:-28px;transform:scale(.43);transform-origin:0 0;}.small-badge .ly-strap{height:110px;}.small-badge .idc{transform-origin:50% 0;transition:transform .7s var(--ease);}.small-badge .idc:hover,.small-badge .idc.is-flipped{transform:scale(1.9);}
       @media(min-width:1500px){.small-badge{left:72px;}}
       @media(max-width:1100px){.tiramisu-sticky{grid-template-columns:minmax(0,.62fr) minmax(0,1.6fr);gap:24px;}.cake-figure{width:min(calc(100% - 270px),calc((100svh - 200px) * ${VB.w} / ${VB.h}));}.cake-notes{min-width:300px;}.cake-callout{padding:18px 22px;}.cake-callout p{font-size:15px;}}
+      /* Phone: the whole scene fits one screen. The cake takes whatever height is left,
+         so the step card and the 01-04 buttons are always visible. */
       @media(max-width:760px){
-        .about-story{height:240svh;min-height:1700px;}
-        .tiramisu-sticky{grid-template-columns:1fr;gap:0;padding-top:104px;padding-bottom:20px;align-content:start;}
-        .recipe-copy{padding-top:8px;}.recipe-copy .h-section{font-size:2.4rem;}.recipe-intro{font-size:15px;margin-top:10px;}
-        .dessert-stage{flex-direction:column;gap:12px;margin-top:6px;}
-        .cake-wrap{flex-direction:column;align-items:center;width:100%;}
-        .cake-figure{width:min(100%,calc((100svh - 600px) * ${VB.w} / ${VB.h}));min-width:200px;}
+        .about-story{height:270svh;min-height:1800px;}
+        .tiramisu-sticky{display:flex;flex-direction:column;height:100svh;min-height:0;padding-top:88px;padding-bottom:12px;gap:0;}
+        .recipe-copy{flex:none;padding-top:0;}.recipe-copy .h-section{font-size:clamp(1.9rem,8.6vw,2.4rem);}.recipe-intro{font-size:14px;margin-top:8px;line-height:1.45;}
+        .cake-special{position:static;flex:none;display:flex;align-items:baseline;justify-content:center;gap:10px;margin-top:10px;text-align:center;}
+        .cake-special>.mono{font-size:10.5px;letter-spacing:.18em;}.cake-special-title{font-size:2.1rem;margin:0;transform-origin:50% 50%;}.cake-special-sub{display:none;}
+        .dessert-stage{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;margin-top:2px;}
+        .cake-wrap{flex:1;min-height:0;display:flex;flex-direction:column;align-items:stretch;width:100%;}
+        .cake-figure{flex:1 1 0;min-height:150px;width:100%;aspect-ratio:auto;}
         .cake-leader{display:none;}
-        .cake-notes{flex:none;width:100%;min-width:0;max-width:none;margin:4px 0 0;}
-        .cake-callout{position:relative;top:auto!important;transform:none;text-align:center;padding:12px 16px 14px;animation-name:callout-in-m;}
-        .cake-callout h3{font-size:18px;margin:4px 0 4px;}.cake-callout p{font-size:14px;line-height:1.45;}
+        .cake-notes{flex:none;width:100%;min-width:0;max-width:none;margin:0;}
+        .cake-callout{position:relative;top:auto!important;transform:none;text-align:center;min-height:104px;padding:10px 14px 12px;border-radius:14px;animation-name:callout-in-m;}
+        .cake-callout>.mono{font-size:10.5px;}.cake-callout h3{font-size:17px;margin:3px 0 3px;}.cake-callout p{font-size:13px;line-height:1.4;}
         @keyframes callout-in-m{from{opacity:0;transform:translateY(10px) scale(.96)}}
-        .cake-special{position:static;text-align:center;margin-top:14px;}.cake-special>.mono{font-size:12px;}.cake-special-title{font-size:2.9rem;transform-origin:50% 50%;}.cake-special-sub{font-size:14px;}
-        .cake-rail{flex-direction:row;order:2;}
-        .cake-rail::before,.cake-rail::after{left:22px;right:22px;top:50%;bottom:auto;width:auto;height:2px;margin:-1px 0 0;}
-        .cake-rail::after{right:auto;width:calc((100% - 44px) * var(--fill));height:2px;transition:width .3s var(--ease);}
+        .cake-rail{flex:none;flex-direction:row;justify-content:center;gap:18px;order:2;}
+        .cake-rail button{width:42px;height:42px;}
+        .cake-rail::before,.cake-rail::after{left:calc(50% - 90px);right:calc(50% - 90px);top:50%;bottom:auto;width:auto;height:2px;margin:-1px 0 0;}
+        .cake-rail::after{right:auto;width:calc(180px * var(--fill));height:2px;transition:width .3s var(--ease);}
         .small-badge{left:auto;right:44px;width:90px;height:220px;}.small-badge .ly{left:auto;right:0;transform:scale(.3);transform-origin:100% 0;}.small-badge .ly-strap{height:360px;}.small-badge .idc:hover,.small-badge .idc.is-flipped{transform:scale(2);}
       }
       @media(prefers-reduced-motion:reduce){
