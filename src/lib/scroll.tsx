@@ -59,6 +59,12 @@ export function scrollToTarget(id: string) {
 
 export function useDeck() {
   useEffect(() => {
+    // Every visit and refresh starts at the top: stop the browser restoring the old scroll
+    // position, and drop any #section hash so it can't jump down either.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+    window.scrollTo(0, 0);
+
     const reduce = prefersReducedMotion();
     if (!reduce) {
       lenis = new Lenis({ autoRaf: true, lerp: 0.1, wheelMultiplier: 1 });
@@ -67,6 +73,8 @@ export function useDeck() {
     const deck = document.querySelector<HTMLElement>("[data-deck]");
     if (!deck) return;
     const cards = Array.from(deck.querySelectorAll<HTMLElement>(":scope > [data-card]"));
+    // Later cards always stack above earlier ones, and nothing inside a card can escape it.
+    cards.forEach((card, i) => { card.style.zIndex = String(i + 1); });
     // One overlay per card that dims it as the next card covers it. Its opacity is set directly,
     // so no style change ever cascades into the card's (large) content while scrolling.
     const shades = cards.map((card) => {
@@ -115,6 +123,10 @@ export function useDeck() {
         let p = 0;
         if (next !== undefined) p = Math.min(1, Math.max(0, (vh - (next - sy)) / vh));
         const card = cards[i];
+        // Fully covered: hide it, so no tilted edges peek out around the card on top
+        // (the last card ends a few pixels above the viewport bottom).
+        const hidden = p >= 1 && i < cards.length - 1;
+        if ((card.style.visibility === "hidden") !== hidden) card.style.visibility = hidden ? "hidden" : "";
         if (reduce || isStill() || p === 0) {
           if (card.dataset.p !== "0") {
             card.style.transform = "";
@@ -125,7 +137,9 @@ export function useDeck() {
         }
         // Ease so the tilt builds quickly, then settles.
         const e = 1 - Math.pow(1 - p, 2);
-        card.style.transform = `perspective(1800px) rotateX(${(e * 10).toFixed(3)}deg) scale(${(1 - e * 0.1).toFixed(4)})`;
+        // Flat (2D) shrink only: 3D tilts on tall cards made the browser draw tiles of the
+        // covered card on top of the next one.
+        card.style.transform = `scale(${(1 - e * 0.06).toFixed(4)})`;
         shades[i].style.opacity = (e * 0.55).toFixed(3);
         card.dataset.p = "1";
       }
