@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aryan Tanwar — portfolio
 
-## Getting Started
+Next.js 15 / React 19 portfolio with a beige and forest-green palette and orange-and-beige mechanical skill keys.
 
-First, run the development server:
+## Run
 
-```bash
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the Local URL printed by Next.js. For a production build, run `npm run build`, then `npm start`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Interactions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Hero: Memoji-inspired avatar made from Aryan's supplied photo. Click to say hello; pointer movement adds a subtle tilt. The pause control stops looping animations.
+- About: a four-layer tiramisu assembles as you scroll down and separates on the way back. The numbered controls and assemble/explore button also work without scrolling. The small badge flips on hover, tap, or keyboard activation.
+- Skills: chunky orange and beige keycaps with a distinct icon per skill. Click a key to press it and inspect its applications. Category filters and previous/next keys expose all 40 skills. Arrow keys move within the visible keys.
+- Projects: four expandable panels, shorter descriptions, and retained animated diagrams. Smart Stock AI includes an interactive restaurant purchasing example. Click the active spine, click outside, or press Escape to close.
+- Experience: a branching map of internships, research, education, and projects. Scroll through years, filter categories, and select an organization for concise details. Mobile places the details below the map.
+- Impact and Contact: retain the original horizontal impact sequence and contact interactions.
 
-## Learn More
+Reduced-motion settings disable automatic depth and looping effects. Native buttons, focus indicators, and accessible names support keyboard navigation.
 
-To learn more about Next.js, take a look at the following resources:
+## Content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`src/lib/data.ts` retains the supplied portfolio's résumé-based content. Three internships and two research roles are supported by that source. Smart Stock AI's description comes from Aryan's explanation in the chat: daily USDA scraping, Google TimesFM modeling and testing, and purchasing recommendations constrained by inventory, refrigeration, and storage. The repository link supplied by Aryan returned 404 during implementation; its code and results were not independently verified. The onion example is illustrative, not a live forecast.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Design references
 
-## Deploy on Vercel
+- Apple Design skill: https://github.com/dickwu/apple-design-skill
+- Graph interaction reference: https://github.com/HelixDB/helix-foundry
+- Keyboard, tiramisu, and avatar references supplied in the chat.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The ontology component is an original implementation inspired by the reference's connected nodes, filtering, and inspector; it does not bundle Helix Foundry. Some organization marks are website favicons; others use readable monograms or simple illustrative marks. Skill symbols are custom SVGs, alongside the original project's brand icon assets.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Avatar generation
+
+Generated with the built-in image-generation tool, using Aryan's photo as the identity reference and the supplied cartoon avatar as the style reference. Final prompt: “Create a stylized Apple Memoji-inspired head-and-shoulders avatar with an oversized rounded head, smooth simplified features, black sunglasses, backward sage cap, green shirt, and friendly toothy smile. Preserve the person’s likeness. Transparent background; no circle, text, or interface.”
+
+Final asset: `public/aryan-avatar-memoji.png`.
+
+Development and production build caches are separated (`.next-dev` / `.next`) so building does not interrupt the preview.
