@@ -1,7 +1,7 @@
 /*
  * Single source of content for the site. Components only read from here.
  *
- * Source of truth: public/Aryan_Tanwar_Resume.pdf (Aryan_Tanwar_Resume_FT-2),
+ * Source of truth: the résumé (Aryan_Tanwar_Resume_FT-2, not published on the site),
  * plus the master résumé (Aryan_Tanwar_Master_Resume.tex) and Aryan_Tanwar_Resume_FT-General.pdf
  * for the Toyota project, coursework and the peer-tutor line. Nothing here is invented:
  * if it is not in one of those files, it is not on the site.
@@ -23,7 +23,6 @@ export type Profile = {
   location: string;
   linkedin: string;
   linkedinLabel: string;
-  resume: string;
 };
 
 export const PROFILE: Profile = {
@@ -48,7 +47,6 @@ export const PROFILE: Profile = {
   location: "Bloomington, IN",
   linkedin: "https://www.linkedin.com/in/aryantanwar/",
   linkedinLabel: "linkedin.com/in/aryantanwar",
-  resume: "/Aryan_Tanwar_Resume.pdf",
 };
 
 export const NAV = [
@@ -197,8 +195,6 @@ export type Project = {
   tech: string[];
   visual: "ripple" | "lakehouse" | "roi" | "stock";
   github?: string;
-  /** A PDF that tells the full story (served from /public). */
-  report?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -273,7 +269,6 @@ export const PROJECTS: Project[] = [
     ],
     tech: ["Google TimesFM", "N8N", "Web Scraping", "Time Series Forecasting"],
     visual: "stock",
-    report: "/Aryan_Tanwar_SmartStock_AI_Report.pdf",
   },
 ];
 

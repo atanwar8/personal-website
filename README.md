@@ -17,10 +17,10 @@ Built with Next.js 15, React 19 and TypeScript. Fully static, deployed on Vercel
 | **Hero** | A memoji avatar that ripples apart into coloured blocks, spells **YO** and **AT**, and pops back into the photo with a bubble effect. Click it to send a ripple. A pause button stops all looping motion. |
 | **About** | A tiramisu that builds itself layer by layer as you scroll, with a callout for each layer (the base, the middle, the flavor, the finish). A swinging lanyard ID badge flips on hover to reveal three facts. |
 | **Skills** | A mechanical keyboard of 40 skills. Press a key to see its logo and a one-line story of where it was used. Filters by family. On phones it becomes swipeable tabs with a bottom-sheet pop-up. |
-| **Work** | Four projects (Grainger, Toyota Material Handling, Allianz Life × EY, Smart Stock AI) that open on hover, each with a small animated diagram. Smart Stock AI links to the full research report. |
+| **Work** | Four projects (Grainger, Toyota Material Handling, Allianz Life × EY, Smart Stock AI) that open on hover, each with a small animated diagram. |
 | **Experience** | A scrolling timeline from Edelweiss to graduation, with company logos that light up as you pass them. It ends with the avatar swapping his cap for a graduation cap. |
 | **Impact** | "By the numbers": cards that slide sideways as you scroll and count up their figures. |
-| **Contact** | Email (with copy), phone, LinkedIn and the résumé download. |
+| **Contact** | Email (with copy), phone and LinkedIn. |
 
 Sections stack like a deck of cards: each new section slides up over the last.
 
@@ -70,8 +70,7 @@ src/
 public/
 ├── avatar/               # avatar layers for the graduation animation
 ├── organizations/        # company and school logos
-├── logos/                # tool brand marks
-└── *.pdf                 # résumé and the Smart Stock AI research report
+└── logos/                # tool brand marks
 ```
 
 Almost all copy lives in [`src/lib/data.ts`](src/lib/data.ts), so content updates rarely need to touch a component.

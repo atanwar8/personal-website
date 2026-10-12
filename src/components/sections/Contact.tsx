@@ -91,12 +91,6 @@ export default function Contact() {
               {PROFILE.linkedinLabel} <span aria-hidden="true">↗</span>
             </a>
           </li>
-          <li>
-            <span className="mono">Résumé</span>
-            <a href={PROFILE.resume} download>
-              Download PDF <span aria-hidden="true">↓</span>
-            </a>
-          </li>
         </ul>
 
         <footer className="ct-foot mono">

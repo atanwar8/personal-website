@@ -245,10 +245,9 @@ export default function Work() {
                         <li key={f}>{f}</li>
                       ))}
                     </ul>
-                    {(p.github || p.report) && (
+                    {p.github && (
                       <p className="wk-links">
-                        {p.github && <a href={p.github} target="_blank" rel="noopener noreferrer">Explore the code ↗</a>}
-                        {p.report && <a href={p.report} target="_blank" rel="noopener noreferrer">Read the report (PDF) ↗</a>}
+                        <a href={p.github} target="_blank" rel="noopener noreferrer">Explore the code ↗</a>
                       </p>
                     )}
                   </div>
