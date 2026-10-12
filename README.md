@@ -20,7 +20,7 @@ Built with Next.js 15, React 19 and TypeScript. Fully static, deployed on Vercel
 | **Work** | Four projects (Grainger, Toyota Material Handling, Allianz Life × EY, Smart Stock AI) that open on hover, each with a small animated diagram. |
 | **Experience** | A scrolling timeline from Edelweiss to graduation, with company logos that light up as you pass them. It ends with the avatar swapping his cap for a graduation cap. |
 | **Impact** | "By the numbers": cards that slide sideways as you scroll and count up their figures. |
-| **Contact** | Email (with copy), phone and LinkedIn. |
+| **Contact** | Email (with copy) and LinkedIn. |
 
 Sections stack like a deck of cards: each new section slides up over the last.
 

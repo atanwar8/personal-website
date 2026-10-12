@@ -18,8 +18,6 @@ export type Profile = {
   aboutInterests: { text: string; accent: string };
   quote: string;
   email: string;
-  phone: string;
-  phoneHref: string;
   location: string;
   linkedin: string;
   linkedinLabel: string;
@@ -42,8 +40,6 @@ export const PROFILE: Profile = {
   // Paraphrase of the résumé's own recurring wording ("translating … into clear, stakeholder-ready … recommendations").
   quote: "Translating complex analysis into clear, stakeholder-ready recommendations.",
   email: "atanwar@iu.edu",
-  phone: "(812) 778-5096",
-  phoneHref: "tel:+18127785096",
   location: "Bloomington, IN",
   linkedin: "https://www.linkedin.com/in/aryantanwar/",
   linkedinLabel: "linkedin.com/in/aryantanwar",

@@ -82,10 +82,6 @@ export default function Contact() {
 
         <ul className="ct-links rv">
           <li>
-            <span className="mono">Phone</span>
-            <a href={PROFILE.phoneHref}>{PROFILE.phone}</a>
-          </li>
-          <li>
             <span className="mono">LinkedIn</span>
             <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer">
               {PROFILE.linkedinLabel} <span aria-hidden="true">↗</span>
