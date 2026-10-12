@@ -20,7 +20,6 @@ export type Profile = {
   email: string;
   location: string;
   linkedin: string;
-  linkedinLabel: string;
 };
 
 export const PROFILE: Profile = {
@@ -42,7 +41,6 @@ export const PROFILE: Profile = {
   email: "atanwar@iu.edu",
   location: "Bloomington, IN",
   linkedin: "https://www.linkedin.com/in/aryantanwar/",
-  linkedinLabel: "linkedin.com/in/aryantanwar",
 };
 
 export const NAV = [
