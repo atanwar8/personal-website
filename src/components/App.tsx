@@ -44,6 +44,15 @@ export default function App() {
   useDeck();
   useRevealObserver();
   useEffect(clearSavedStill, []);
+  // Coming back with the browser's Back button can restore the page exactly as it was left (open panels,
+  // paused animation, scroll position). Reload instead, so every visit starts as clean as a refresh.
+  useEffect(() => {
+    const onShow = (e: PageTransitionEvent) => {
+      if (e.persisted) location.reload();
+    };
+    window.addEventListener("pageshow", onShow);
+    return () => window.removeEventListener("pageshow", onShow);
+  }, []);
   return (
     <>
       <a href="#main" className="skip">

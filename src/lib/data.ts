@@ -460,7 +460,7 @@ export const MAP_PLACES: MapPlace[] = [
     skills: ["Audit & compliance", "Financial analysis", "Market research", "Stakeholders"],
   },
   {
-    id: "msis-research", label: "MSIS research", place: "Kelley School of Business · MSIS Program", kind: "Research", t: 2025.55, logo: "kelley",
+    id: "msis-research", label: "MSIS research", place: "Research Assistant, Kelley MSIS", kind: "Research", t: 2025.55, logo: "kelley",
     roles: [{
       title: "Research Assistant, AI Systems & Machine Learning (under MSIS Program Chair)", dates: "Jul 2025 – Aug 2025",
       points: [
@@ -473,9 +473,9 @@ export const MAP_PLACES: MapPlace[] = [
     skills: ["N8N", "TimesFM", "Forecasting", "Prompt tuning", "AI governance", "Stakeholders"],
   },
   {
-    id: "kelley-bs", label: "Kelley · BS", place: "Indiana University, Kelley School of Business", kind: "Education", t: 2025.62, logo: "kelley",
+    id: "kelley-bs", label: "Kelley · BS", place: "Kelley School of Business, Indiana University", kind: "Education", t: 2025.62, logo: "kelley",
     roles: [{
-      title: "B.S. Business; Majors: Information Systems, Business Analytics", dates: "Aug 2025 · GPA 3.60 / 4.00",
+      title: "B.S.B in Information Systems & Business Analytics", dates: "Aug 2025 · GPA 3.60 / 4.00",
       points: [
         "Academic research paper: applied a transaction cost economics framework to evaluate how interfirm governance structures influence strategic pivots in startups, identifying key cost and control trade-offs.",
         "Peer Tutor, K201 & K303 (Computer in Business): guided 200+ students in Excel, databases, and enterprise systems through hands-on instruction.",
@@ -543,7 +543,7 @@ export const MAP_PLACES: MapPlace[] = [
     skills: ["Jira", "Salesforce", "Prompt tuning", "Agile", "Stakeholders"],
   },
   {
-    id: "kelley-msis", label: "Kelley · MSIS", place: "Indiana University, Kelley School of Business", kind: "Education", t: 2026.9, logo: "kelley",
+    id: "kelley-msis", label: "Kelley · MSIS", place: "Kelley School of Business, Indiana University", kind: "Education", t: 2026.9, logo: "kelley",
     roles: [{
       title: "Master of Science in Information Systems (MSIS); Computer Science & Data Science", dates: "Expected Dec 2026",
       points: [
