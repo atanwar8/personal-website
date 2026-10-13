@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDeck } from "@/lib/scroll";
-import { restoreStill } from "@/lib/hooks";
+import { clearSavedStill } from "@/lib/hooks";
 import Navigation from "./Navigation";
 import Hero from "./hero/Hero";
 import About from "./sections/About";
@@ -43,7 +43,7 @@ function useRevealObserver() {
 export default function App() {
   useDeck();
   useRevealObserver();
-  useEffect(restoreStill, []);
+  useEffect(clearSavedStill, []);
   return (
     <>
       <a href="#main" className="skip">

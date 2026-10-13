@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import { PROFILE } from "@/lib/data";
 import "./globals.css";
 
@@ -28,7 +29,7 @@ const description =
   "Aryan Tanwar: MSIS candidate at Indiana University's Kelley School of Business. Strategy & operations, analytics and AI product work.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://aryan-portfolio-vert.vercel.app"),
   title: `${PROFILE.name}: Information Systems & Business Analytics`,
   description,
   openGraph: {
@@ -49,7 +50,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${interTight.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

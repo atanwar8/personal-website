@@ -88,15 +88,16 @@ export function isStill() {
 export function setStill(v: boolean) {
   still = v;
   document.documentElement.classList.toggle("is-still", v);
-  try {
-    localStorage.setItem("motion-still", v ? "1" : "0");
-  } catch {}
   stillListeners.forEach((l) => l());
 }
 
-export function restoreStill() {
+/**
+ * Pausing lasts for the current visit only. Earlier builds saved it in localStorage, which made a
+ * returning visitor land on a frozen, half-built hero; clear that old value so they start fresh.
+ */
+export function clearSavedStill() {
   try {
-    if (localStorage.getItem("motion-still") === "1") setStill(true);
+    localStorage.removeItem("motion-still");
   } catch {}
 }
 

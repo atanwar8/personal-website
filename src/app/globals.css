@@ -292,6 +292,11 @@ html.is-still *::before,
 html.is-still *::after {
   animation-play-state: paused !important;
 }
+/* One-time entrances still finish, so the speech bubble and the pause button itself never stay hidden. */
+html.is-still .hero-bubble,
+html.is-still .hero-still {
+  animation-play-state: running !important;
+}
 
 /* Comfortable touch targets on coarse pointers. */
 @media (pointer: coarse) {
