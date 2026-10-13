@@ -119,7 +119,7 @@ export default function Experience() {
         <div className="ex-side">
           <div className="ex-sticky">
             <h2 id="exp-title" className="h-section">Follow the <span className="accent">connections.</span></h2>
-            <p className="lede">Different places. One evolving perspective, in the order it happened.</p>
+            <p className="lede">Each stop added a layer to how I think. Here they are, in the order I lived them.</p>
             <ul className="ex-legend">
               {(Object.keys(KIND_COLOR) as MapKind[]).map((k) => (
                 <li key={k}><i style={{background: KIND_COLOR[k]}} aria-hidden="true" />{k}</li>
