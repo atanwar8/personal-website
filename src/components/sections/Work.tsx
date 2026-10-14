@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PROJECTS, type Project } from "@/lib/data";
+import { useReducedMotion } from "@/lib/hooks";
 
 /* ----------------------------- Illustrative mini-UIs (pure CSS/SVG, grayscale) ----------------------------- */
 
@@ -80,7 +81,28 @@ function LakehouseUI() {
   );
 }
 
-function RoiUI() {
+const ROI = 68;
+
+function RoiUI({ active }: { active: boolean }) {
+  // On open: the bars pop up, then the gauge sweeps to 68% while the number counts up with it.
+  const reduced = useReducedMotion();
+  const [pct, setPct] = useState(0);
+  useEffect(() => {
+    if (!active || reduced) return;
+    let raf = 0;
+    const start = performance.now() + 750;
+    const tick = (now: number) => {
+      const t = Math.min(1, Math.max(0, (now - start) / 1300));
+      setPct(Math.round(ROI * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      setPct(0); // start from 0% again the next time the card opens
+    };
+  }, [active, reduced]);
+  const shown = !active ? 0 : reduced ? ROI : pct;
   const bars = [
     { k: "Investment", v: 11, label: "$11M", neg: true },
     { k: "Net benefits", v: 18.77, label: "$18.77M" },
@@ -90,21 +112,19 @@ function RoiUI() {
     <div className="mini mini-roi">
       <div className="roi-chart">
         {bars.map((b, i) => (
-          <div key={b.k} className="roi-col">
+          <div key={b.k} className="roi-col" style={{ "--i": i } as React.CSSProperties}>
             <span className="roi-val mono">{b.label}</span>
-            <span
-              className={`roi-bar${b.neg ? " is-neg" : ""}`}
-              style={{ "--h": `${(b.v / 18.77) * 100}%`, "--i": i } as React.CSSProperties}
-            />
+            <span className={`roi-bar${b.neg ? " is-neg" : ""}`} style={{ "--h": `${(b.v / 18.77) * 100}%` } as React.CSSProperties} />
             <span className="roi-k mono">{b.k}</span>
           </div>
         ))}
         <div className="roi-gauge" aria-hidden="true">
-          <svg viewBox="0 0 120 70">
-            <path d="M10 62a50 50 0 0 1 100 0" className="g-track" />
-            <path d="M10 62a50 50 0 0 1 100 0" className="g-fill" pathLength={100} />
+          {/* The number is drawn inside the arc so it scales with it and never touches the stroke. */}
+          <svg viewBox="0 0 120 68">
+            <path d="M8 62a52 52 0 0 1 104 0" className="g-track" />
+            <path d="M8 62a52 52 0 0 1 104 0" className="g-fill" pathLength={100} style={{ strokeDashoffset: 100 - shown }} />
+            <text x="60" y="60" textAnchor="middle" className="roi-pct">{shown}%</text>
           </svg>
-          <span className="roi-pct">68%</span>
           <span className="roi-k mono">ROI</span>
         </div>
       </div>
@@ -262,7 +282,7 @@ export default function Work() {
         </div>
       </div>
 
-      <style href="work-v2" precedence="default">{`
+      <style href="work-v6" precedence="default">{`
         .wk-rail { display: flex; gap: 10px; margin-top: 48px; height: min(78svh, 600px); }
         .wk-panel {
           position: relative; flex: 1 1 0; min-width: 76px; display: flex; border-radius: 26px; overflow: hidden;
@@ -413,23 +433,25 @@ export default function Work() {
         .lk-foot { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; font-size: 0.6875rem; color: var(--ink-2); border-top: 1px solid var(--line); }
 
         /* roi */
-        .roi-chart { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr) 1.3fr; align-items: end; gap: 14px; padding: 22px 20px 16px; min-height: 0; }
+        /* The 68% gauge leads on its own row; the three bars sit underneath it. */
+        .roi-chart { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto minmax(0, 1fr); align-items: end; gap: 22px 14px; padding: 24px 20px 16px; min-height: 0; }
         .roi-col { display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; gap: 8px; }
-        .roi-val { font-size: 0.75rem; font-weight: 600; }
+        .roi-val { font-size: 0.75rem; font-weight: 600; opacity: 0; transform: translateY(6px); transition: opacity .4s var(--ease), transform .5s var(--ease); }
+        .is-open .roi-val { opacity: 1; transform: none; transition-delay: calc(.75s + var(--i) * .12s); }
+        /* Bars pop up with a little overshoot, one after another. */
         .roi-bar {
           width: 100%; max-width: 58px; height: calc(var(--h) * .72); border-radius: 10px 10px 4px 4px; background: var(--ink);
-          transform-origin: 50% 100%; transform: scaleY(0); transition: transform 1.1s var(--ease); transition-delay: calc(.45s + var(--i) * .12s);
+          transform-origin: 50% 100%; transform: scaleY(0); transition: transform .9s cubic-bezier(.34,1.45,.64,1); transition-delay: calc(.35s + var(--i) * .12s);
         }
         .roi-bar.is-neg { background: repeating-linear-gradient(-45deg, #b4b1ab 0 5px, #dcd9d3 5px 10px); }
         .is-open .roi-bar { transform: none; }
         .roi-k { font-size: 0.6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); text-align: center; }
-        .roi-gauge { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; padding-bottom: 0; }
-        .roi-gauge svg { width: 100%; max-width: 160px; }
-        .g-track, .g-fill { fill: none; stroke-width: 10; stroke-linecap: round; }
+        .roi-gauge { grid-column: 1 / -1; order: -1; position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .roi-gauge svg { width: 100%; max-width: 170px; }
+        .g-track, .g-fill { fill: none; stroke-width: 7; stroke-linecap: round; }
         .g-track { stroke: #dcd9d3; }
-        .g-fill { stroke: var(--ink); stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1.4s var(--ease) .6s; }
-        .is-open .g-fill { stroke-dashoffset: 32; }
-        .roi-pct { margin-top: -38px; font-size: 1.625rem; font-weight: 700; letter-spacing: -0.04em; }
+        .g-fill { stroke: var(--ink); stroke-dasharray: 100; }
+        .roi-pct { fill: var(--ink); font-size: 26px; font-weight: 700; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
 
         @media (max-width: 1100px) {
           .wk-content { grid-template-columns: 1fr; grid-template-rows: auto minmax(220px, 1fr); overflow: auto; }
@@ -453,12 +475,10 @@ export default function Work() {
           .lk-name { font-size: 14px; }
           .lk-sub { font-size: 9.5px; white-space: nowrap; }
           .lk-foot { flex-wrap: wrap; gap: 2px 12px; padding: 8px 12px; font-size: 10px; }
-          /* ROI: the 68% gauge gets its own row above the bars so nothing overlaps. */
-          .roi-chart { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto 190px; row-gap: 18px; padding: 18px 16px 14px; }
-          .roi-gauge { grid-column: 1 / -1; order: -1; height: auto; }
+          .roi-chart { grid-template-rows: auto 190px; row-gap: 18px; padding: 18px 16px 14px; }
+          .roi-k { font-size: 10px; letter-spacing: .03em; white-space: nowrap; }
           .roi-gauge svg { max-width: 150px; }
-          .roi-pct { margin-top: -36px; font-size: 1.5rem; }
-        }
+                  }
         @media(min-width:861px) and (max-width:1100px) {
           .wk-rail { height:780px; min-height:0; }
           .wk-content { grid-template-rows:auto minmax(320px,1fr); overflow:auto; }
