@@ -251,7 +251,8 @@ export default function Work() {
                     {p.client}
                   </span>
                   <span className="wk-plus" aria-hidden="true">
-                    +
+                    {/* Drawn rather than typed: a "+" character sits off-centre, which shows once it turns into an ×. */}
+                    <svg viewBox="0 0 16 16"><path d="M8 2.5v11M2.5 8h11" /></svg>
                   </span>
                 </button>
 
@@ -282,7 +283,7 @@ export default function Work() {
         </div>
       </div>
 
-      <style href="work-v6" precedence="default">{`
+      <style href="work-v7" precedence="default">{`
         .wk-rail { display: flex; gap: 10px; margin-top: 48px; height: min(78svh, 600px); }
         .wk-panel {
           position: relative; flex: 1 1 0; min-width: 76px; display: flex; border-radius: 26px; overflow: hidden;
@@ -300,9 +301,10 @@ export default function Work() {
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-height: 70%;
         }
         .wk-plus {
-          display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; font-size: 1.375rem; font-weight: 300;
+          display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%;
           box-shadow: inset 0 0 0 1px rgba(13,13,13,.2); transition: transform .6s var(--ease), background-color .4s, color .4s;
         }
+        .wk-plus svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
         .wk-spine:hover .wk-plus { transform: rotate(90deg); background: var(--ink); color: #fff; }
         .is-open .wk-plus { transform: rotate(45deg); background: var(--ink); color: #fff; }
 
