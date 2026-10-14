@@ -121,7 +121,7 @@ export default function Navigation() {
         </ol>
       </div>
 
-      <style href="nav" precedence="default">{`
+      <style href="nav-v3" precedence="default">{`
         .nav-progress {
           position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 60;
           background: var(--ink); transform-origin: 0 50%; pointer-events: none;
@@ -210,6 +210,10 @@ export default function Navigation() {
         .menu.is-open li a { transform: none; }
         .menu-idx { font-size: 1.0625rem; letter-spacing: .04em; color: var(--mute); font-weight: 500; }
 
+        /* Desktop: same gap from the card's top edge as from its sides, so the bar sits evenly inside the first card. */
+        @media (min-width: 901px) {
+          .nav { top: calc(var(--deck-inset) + 24px); padding-inline: calc(var(--deck-inset) + 24px); }
+        }
         @media (max-width: 900px) {
           .nav-pill { display: none; }
           .nav-menu { display: inline-flex; }
