@@ -266,7 +266,7 @@ export default function Work() {
                         <li key={f}>{f}</li>
                       ))}
                     </ul>
-                    {p.github && (
+                    {p.github?.startsWith("https://") && (
                       <p className="wk-links">
                         <a href={p.github} target="_blank" rel="noopener noreferrer">Explore the code ↗</a>
                       </p>

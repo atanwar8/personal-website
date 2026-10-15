@@ -8,3 +8,8 @@ scripts
 aryan-portfolio-updated.zip
 .claude
 .next-dev
+
+# Never upload local secrets (mirrors .gitignore)
+.env*
+*.pem
+*.key

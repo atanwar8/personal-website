@@ -33,7 +33,8 @@ Sections stack like a deck of cards: each new section slides up over the last.
 - **Icons:** brand marks from [Simple Icons](https://simpleicons.org) (CC0) and hand-drawn SVG line icons
 - **Hosting:** [Vercel](https://vercel.com)
 
-No backend, database, forms or tracking. The page is pre-rendered HTML, CSS and JavaScript.
+No backend, database or forms. The page is pre-rendered HTML, CSS and JavaScript. Visits are counted with
+[Vercel Web Analytics](https://vercel.com/docs/analytics), which uses no cookies and loads from the site's own domain.
 
 ## Run it locally
 
@@ -82,9 +83,24 @@ Almost all copy lives in [`src/lib/data.ts`](src/lib/data.ts), so content update
 - Text meets WCAG contrast minimums (checked against Apple's Human Interface Guidelines).
 - Every interactive element has a text label for screen readers.
 
+## Security
+
+- **Browser security headers** on every route, set in [`next.config.ts`](next.config.ts):
+  - a Content Security Policy that only loads scripts, styles, fonts and images from the site itself;
+  - `frame-ancestors 'none'` and `X-Frame-Options: DENY`, so other sites can't frame the page;
+  - `X-Content-Type-Options: nosniff`;
+  - `Referrer-Policy: strict-origin-when-cross-origin`;
+  - a `Permissions-Policy` that turns off camera, microphone and location;
+  - `Cross-Origin-Opener-Policy: same-origin`.
+
+  The relaxed development policy only applies to `next dev`. The `X-Powered-By` header is off, and HSTS comes from Vercel.
+- **Dependencies:** an npm override pins Next.js's bundled PostCSS to a patched release, and `npm audit --omit=dev` reports no known vulnerabilities.
+- **No secrets:** nothing in the repository is secret. `.env*` and key files are kept out of Git and out of Vercel uploads.
+- **Audit:** October 2026, using Cloudflare's [security-audit skill](https://github.com/cloudflare/security-audit-skill) (quick profile, source-only). It found no vulnerabilities in the site itself. Its one low-severity note was about older Git history, not the live site.
+
 ## Deploy
 
-The site is deployed to Vercel:
+The site deploys to Vercel. Every push to `main` on GitHub builds and publishes it automatically. To deploy from a local copy instead:
 
 ```bash
 npx vercel deploy --prod

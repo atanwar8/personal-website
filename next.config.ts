@@ -1,14 +1,14 @@
 import type { NextConfig } from "next";
-
-const dev = process.env.NODE_ENV === "development";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 /*
  * Browser security headers. The site is static and loads everything from its own origin
  * (fonts, images, scripts and Vercel Analytics), so the policy only allows 'self'.
  * Inline scripts and styles stay allowed: Next.js inlines its startup data and each
- * component ships a <style> block. Dev mode also needs eval for fast refresh.
+ * component ships a <style> block. Only `next dev` (the development-server phase, not NODE_ENV,
+ * which a build environment could override) relaxes the policy for fast refresh.
  */
-const csp = [
+const policy = (dev: boolean) => [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
@@ -22,8 +22,8 @@ const csp = [
   ...(dev ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");
 
-const securityHeaders = [
-  { key: "Content-Security-Policy", value: csp },
+const securityHeaders = (dev: boolean) => [
+  { key: "Content-Security-Policy", value: policy(dev) },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -31,13 +31,14 @@ const securityHeaders = [
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
 ];
 
-const nextConfig: NextConfig = {
-  distDir: dev ? ".next-dev" : ".next",
-  devIndicators: false,
-  poweredByHeader: false,
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
-  },
-};
-
-export default nextConfig;
+export default function nextConfig(phase: string): NextConfig {
+  const dev = phase === PHASE_DEVELOPMENT_SERVER;
+  return {
+    distDir: dev ? ".next-dev" : ".next",
+    devIndicators: false,
+    poweredByHeader: false,
+    async headers() {
+      return [{ source: "/:path*", headers: securityHeaders(dev) }];
+    },
+  };
+}
