@@ -335,7 +335,7 @@ export const EXPERIENCE: PathStop[] = [
     year: "2026",
     dates: "Jun 2026 – Aug 2026",
     title: "Strategy & Operations Intern",
-    place: "CooperSurgical · Trumbull, CT",
+    place: "CooperSurgical",
     detail: [
       "Built an account segmentation model across 38K+ IVF clinic accounts, tiering them into 12 segments and surfacing the top 50 provider networks for 2027 go-to-market planning.",
       "Reconciled 2,000+ product links in a single run by automating a manual line-by-line audit with Excel and web-scraping workflows.",
@@ -519,7 +519,7 @@ export const MAP_PLACES: MapPlace[] = [
     skills: ["TimesFM", "N8N", "Forecasting", "Web scraping", "Python"],
   },
   {
-    id: "coopersurgical", label: "CooperSurgical", place: "CooperSurgical · Trumbull, CT", kind: "Internships", t: 2026.45, logo: "coopersurgical",
+    id: "coopersurgical", label: "CooperSurgical", place: "CooperSurgical", kind: "Internships", t: 2026.45, logo: "coopersurgical",
     roles: [{
       title: "Strategy & Operations Intern", dates: "Jun 2026 – Aug 2026",
       points: [
