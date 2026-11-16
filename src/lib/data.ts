@@ -293,7 +293,7 @@ export const EXPERIENCE: PathStop[] = [
     kind: "work",
     year: "2023",
     dates: "Jun 2023 – Aug 2023",
-    title: "Business Analytics Intern",
+    title: "Business Intelligence Summer Analyst",
     place: "BDO Global LLP",
     detail: [
       "Built 5+ executive Power BI dashboards connected to live SQL data sources for real-time visibility into revenue, profitability and operational KPIs.",
@@ -303,8 +303,8 @@ export const EXPERIENCE: PathStop[] = [
   {
     kind: "work",
     year: "2024",
-    dates: "Jun 2024 – Aug 2024",
-    title: "Audit & Assurance Intern",
+    dates: "Jun 2024 – Dec 2024",
+    title: "Assurance Management Analyst",
     place: "Deloitte",
     detail: [
       "Supported IPO readiness for 3 clients through IGAAP-to-Ind AS transitions, analyzing regulatory requirements, financial statements and ERP migration risks.",
@@ -328,13 +328,13 @@ export const EXPERIENCE: PathStop[] = [
     dates: "Aug 2025",
     title: "B.S. Business, Information Systems & Business Analytics",
     place: "Indiana University, Kelley School of Business",
-    detail: ["GPA 3.60 / 4.00.", "Peer Tutor for K201/K303 core tech courses."],
+    detail: ["Major GPA 3.81 / 4.00.", "Peer Tutor for K201/K303 core tech courses."],
   },
   {
     kind: "work",
     year: "2026",
     dates: "Jun 2026 – Aug 2026",
-    title: "Strategy & Operations Intern",
+    title: "Strategy & Operations Summer Analyst",
     place: "CooperSurgical",
     detail: [
       "Built an account segmentation model across 38K+ IVF clinic accounts, tiering them into 12 segments and surfacing the top 50 provider networks for 2027 go-to-market planning.",
@@ -440,7 +440,7 @@ export const MAP_PLACES: MapPlace[] = [
   {
     id: "bdo", label: "BDO", place: "BDO Global LLP", kind: "Internships", t: 2023.5, logo: "bdo",
     roles: [{
-      title: "Business Analytics Intern", dates: "Jun 2023 – Aug 2023",
+      title: "Business Intelligence Summer Analyst", dates: "Jun 2023 – Aug 2023",
       points: [
         "Designed 5+ executive-level Power BI dashboards integrating cross-functional SQL data sources, enabling real-time performance monitoring of revenue, expense, and profitability KPIs across client portfolios for C-suite decision-making.",
         "Analyzed product performance KPIs and benchmarked against industry competitors to identify market positioning gaps, informing strategic recommendations that improved revenue performance and competitive differentiation.",
@@ -451,7 +451,7 @@ export const MAP_PLACES: MapPlace[] = [
   {
     id: "deloitte", label: "Deloitte", place: "Deloitte", kind: "Internships", t: 2024.5, logo: "deloitte",
     roles: [{
-      title: "Audit and Assurance Intern", dates: "Jun 2024 – Aug 2024",
+      title: "Assurance Management Analyst", dates: "Jun 2024 – Dec 2024",
       points: [
         "Supported IPO readiness for 3 clients through regulatory compliance analysis and ERP data migration risk assessment (IGAAP to Ind AS), translating complex technical findings into structured implementation roadmaps addressing M&A accounting treatment.",
         "Identified 20+ potential IPO candidates through market and sector analysis, delivering full audit support including financial risk assessments, process walkthroughs, and compliance testing, in collaboration with senior auditors and leadership.",
@@ -475,7 +475,7 @@ export const MAP_PLACES: MapPlace[] = [
   {
     id: "kelley-bs", label: "Kelley · BS", place: "Kelley School of Business, Indiana University", kind: "Education", t: 2025.62, logo: "kelley",
     roles: [{
-      title: "B.S.B in Information Systems & Business Analytics", dates: "Aug 2025 · GPA 3.60 / 4.00",
+      title: "B.S.B in Information Systems & Business Analytics", dates: "Aug 2025 · Major GPA 3.81 / 4.00",
       points: [
         "Academic research paper: applied a transaction cost economics framework to evaluate how interfirm governance structures influence strategic pivots in startups, identifying key cost and control trade-offs.",
         "Peer Tutor, K201 & K303 (Computer in Business): guided 200+ students in Excel, databases, and enterprise systems through hands-on instruction.",
@@ -521,7 +521,7 @@ export const MAP_PLACES: MapPlace[] = [
   {
     id: "coopersurgical", label: "CooperSurgical", place: "CooperSurgical", kind: "Internships", t: 2026.45, logo: "coopersurgical",
     roles: [{
-      title: "Strategy & Operations Intern", dates: "Jun 2026 – Aug 2026",
+      title: "Strategy & Operations Summer Analyst", dates: "Jun 2026 – Aug 2026",
       points: [
         "Built an account segmentation model across 38K+ IVF clinic accounts, tiering them into 12 segments and surfacing the top 50 provider networks for 2027 go-to-market planning.",
         "Reconciled 2,000+ product links in a single run by automating a manual line-by-line audit with Excel and web-scraping workflows.",
@@ -532,7 +532,7 @@ export const MAP_PLACES: MapPlace[] = [
   {
     id: "grainger", label: "Grainger", place: "Grainger Inc", kind: "Projects", t: 2026.7, logo: "grainger",
     roles: [{
-      title: "AI Product Development · Kelley MSIS capstone", dates: "Aug 2026 – Present",
+      title: "Consulting Project Lead", dates: "Aug 2026 – Present",
       points: [
         "Building an AI product for a Fortune 500 distributor that sits on top of Jira and Salesforce to predict how a single change ripples across 10 teams and 41 cross-team dependencies.",
         "Unifies commitments, handoffs, staffing and budgets into a single view, so planners can see the whole picture in one place.",
@@ -604,6 +604,6 @@ export const ID_CARD = {
 export const QUICK_FACTS: [string, string][] = [
   ["Based", "Bloomington, IN"],
   ["Education", "MSIS, Kelley · Dec 2026"],
-  ["Latest role", "Strategy & Operations Intern, CooperSurgical"],
-  ["Now", "AI product development, Grainger Inc capstone"],
+  ["Latest role", "Strategy & Operations Summer Analyst, CooperSurgical"],
+  ["Now", "Consulting Project Lead, Grainger Inc"],
 ];
